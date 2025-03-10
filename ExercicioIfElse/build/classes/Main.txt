@@ -1,0 +1,54 @@
+
+import javax.swing.JOptionPane;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        // Solicita um número ao usuário
+        String num1Texto = JOptionPane.showInputDialog("Digite um numero:");
+        int num1 = Integer.parseInt(num1Texto);
+        
+        // Solicita o segundo número
+        String num2Texto = JOptionPane.showInputDialog ("Digite o segundo numero:");
+         int num2 = Integer.parseInt(num2Texto);
+         
+         
+         // Solicita a operação desejada
+        String operacao =JOptionPane.showInputDialog("Escolha a operaco (+,-,*,/):");
+        
+        int resultado = 0;
+        boolean operacaoValida =  true;
+        
+        
+        if(operacao.equals ("+")){
+        resultado = num1 + num2;
+        } else if (operacao.equals("-") ){
+          resultado = num1 - num2;
+        } else if (operacao.equals("*")){
+        resultado = num1 * num2;
+        }else if (operacao.equals("/")){
+        if (num2 !=0){
+        resultado = num1/ num2;
+        }else {
+        JOptionPane.showMessageDialog(null,"erro divisao por zero nao e possivel");
+        operacaoValida = false;// Indica erro na operação
+        }
+        } else {
+        
+        JOptionPane.showMessageDialog(null, "operacao invalida");
+        operacaoValida = false;// Indica erro na operação
+        }
+        
+         // Exibe o resultado se a operação for válida
+         if (operacaoValida){
+         
+         
+         JOptionPane.showMessageDialog(null, "Resultado:" + resultado);
+                 }
+        
+        
+        } 
+    }
+    
+
