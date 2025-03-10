@@ -1,0 +1,58 @@
+import javax.swing.*;// Para os componentes gráficos (caixa de texto, botões, etc.)
+import java.awt.event.*;// Para eventos como clique no botão
+
+
+public class JanelaTexto {
+    
+    public static void main(String[]args) {
+    // Criando a janela
+     JFrame frame =new JFrame("caixa de texto exemplo");
+     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+     frame.setSize(400,300);// Definindo o tamanho da janela
+    
+     
+     // Criando a caixa de texto para o usuário digitar
+     
+     JTextField textField = new JTextField (20);// Tamanho da caixa de texto
+      textField.setBounds(50 ,50 , 300 ,30 );// Posição (x, y) e tamanho (largura, altura)
+     
+      // Criando o botão
+      JButton button = new JButton("Mostrar texto");
+      button.setBounds(50, 100, 150, 30);// Posição e tamanho do botão
+      
+      // Criando a caixa de texto onde o texto digitado será exibido
+     
+     JTextArea textArea = new JTextArea();
+
+     textArea.setBounds(50, 150 , 300, 100);// Posição e tamanho da caixa de texto
+     textArea.setEditable(false);// Posição e tamanho da caixa de texto
+     
+     
+
+      // Adicionando os componentes à janela
+     
+     frame.add(textField);
+     frame.add(button);
+     frame.add(textArea);
+     
+     
+     // Configurando o layout (sem layout padrão)
+     frame.setLayout(null);
+     frame.setVisible(true); // Tornando a janela visível
+      
+     
+// Adicionando o evento do botão para exibir o texto digitado na caixa de texto
+      button.addActionListener(new ActionListener(){
+      @Override
+      public void actionPerformed(ActionEvent e){
+         String textoDigitado = textField.getText();// Pegando o texto digitado na caixa de texto
+      textArea.setText (textoDigitado);// Exibindo o texto na caixa de texto
+         }
+      });
+
+
+
+    }
+    
+}
