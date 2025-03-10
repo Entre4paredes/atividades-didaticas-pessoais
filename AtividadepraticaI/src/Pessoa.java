@@ -1,0 +1,130 @@
+// Classe Pessoa
+public class Pessoa {
+  private  String nome;
+  private  int idade;
+  private  String profissao;
+  private  double salario;
+  private String email;
+    
+    
+    // 🔹 Primeiro Construtor: recebe todos os dados
+    public Pessoa(String nome,int idade , String profissao , double salario, String email ){
+    this.nome = nome;
+    this.idade = idade;
+    this.profissao = profissao;
+    this.salario = salario;
+    this.email = email;
+    }
+    
+
+// 🔹 Segundo Construtor: recebe apenas nome e idade (profissão e salário são padrão)
+    public Pessoa(String nome,int idade){
+    this(nome, idade, "Desempregado",0.0, "semenail@email.com");
+    }
+    
+    
+    // 🔹 Terceiro Construtor: recebe apenas nome (idade, profissão e salário padrão)
+    public Pessoa(String nome){
+    this(nome, 18);
+    }
+     
+    // Métodos Getters e Setters
+    
+    public String getNome(){
+        return nome;
+    }
+    
+    
+    public void setNome(String nome){
+    
+    if (!nome.isEmpty())// Eitar nome vazio
+        this.nome = nome;
+
+    }
+    
+    
+    public int getIdade(){
+    
+    return idade;
+    }
+    
+    public void setIdade(int idade){
+    
+    if (idade > 0) { // Garantir que a idade seja válida
+    
+    this.idade = idade;     
+      }
+    }
+    
+    
+    public String getProfissao(){
+    
+    return profissao;
+    }
+    
+    public void setProfissao(String profissao){
+    
+    this.profissao = profissao;
+    }
+    
+    public String getEmail(){
+    
+    return email;
+    
+    }
+    
+    public void setEmail(String email){
+    
+    this.email = email;
+     
+    }
+    
+    
+    
+    public double getSalario(){
+    
+    return salario;
+    }
+    
+    public void setSalario(double salario){
+      if (salario >= 0) {  // Evitar valores negativos
+      
+      this.salario = salario;
+      
+      }
+    }
+    
+    
+    
+    
+    
+    // Método para aumentar o salário
+    public void aumentarsalario(double aumento){
+   
+         if (aumento > 0){
+         this.salario += aumento;
+         
+         }
+        
+    }
+   
+    
+    
+    // 🔹 Método para aumentar a idade (aniversário)
+    public void aniversario(){
+    this.idade++;
+    }
+    
+    // Método para exibir os detalhes da pessoa
+    void exibirDetalhes(){
+    System.out.println("Nome: "+ nome );
+    System.out.println("Idade: "+ idade);
+    System.out.println("profissao: " + profissao);
+    System.out.println("salario: R$" + salario);
+    System.out.println("Email: "+ email);
+    System.out.println("_________________________");
+    
+    
+    }
+            
+}

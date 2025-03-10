@@ -1,0 +1,29 @@
+// Classe Principal
+public class main {
+    public static void main (String[] args){
+    // Criando um objeto da classe Pessoa com o construtor
+        Pessoa pessoa1 = new Pessoa("carlos", 25, "engenheiro", 3000.00, "carlos123@gmail.com");
+        
+        
+        
+       // Exibir detalhes antes das mudanças
+        System.out.println("antes das mudancas:");
+      pessoa1.exibirDetalhes();
+
+        // Alterar informações usando os métodos set
+        pessoa1.setIdade(28);
+        pessoa1.setProfissao("Arquiteto");
+        pessoa1.setSalario(4000.00);
+        pessoa1.setEmail("carlos.arquiteto@gmail.com");
+        
+        
+        
+         // Exibir detalhes após as mudanças
+        System.out.println("Depois das mudanças:");
+        pessoa1.exibirDetalhes();
+        
+        
+        
+    
+    }
+}
