@@ -1,0 +1,12 @@
+
+public class Carro {
+    String modelo;
+    String cor;
+    int ano;
+    
+    void exibirDetalhes(){
+    System.out.println("modelo: "+ modelo);
+    System.out.println("cor: "+ cor);
+    System.out.println("ano: "+ano);
+    }
+}
