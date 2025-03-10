@@ -1,0 +1,43 @@
+import javax.swing.JOptionPane;
+
+
+
+public class Main {
+
+
+    public static void main(String[] args) {
+       int[] idades = new int[5];// Array de 5 elementos para armazenar as idades
+      int soma = 0; // Para calcular a soma das idades
+      
+      // Pedir 5 idades
+        for (int i = 0; i < 5; i++){
+        boolean idadeValida = false;
+        while (!idadeValida){
+        
+        try { String idadeTexto = JOptionPane.showInputDialog("Digite a " +(i + 1)+"ª idade:");
+        if (idadeTexto == null){
+        continue;// Se o usuário clicar em "Cancelar"
+        }
+        int idade =  Integer.parseInt(idadeTexto);// Converte para número
+        if (idade > 0){
+        idades[1]= idade;// Armazena a idade no array
+        soma += idade; // Adiciona à soma
+        idadeValida =  true;
+        } else{
+          JOptionPane.showMessageDialog(null,"Idade invalida, digite um valor positivo");
+         } 
+            } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog (null, "Por favor, digite um numero valido.");
+            
+            }
+        
+         }
+        
+        }
+        // Calcular a média
+        double media = soma / 5.0;
+        // Exibir o resultado
+        JOptionPane.showMessageDialog(null, "A media das idades e: "+ media);
+    }
+    
+}
