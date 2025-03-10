@@ -1,0 +1,69 @@
+import javax.swing.JOptionPane;
+
+        
+        public class Main {
+
+
+    public static void main(String[] args) {
+  
+        String nome;
+        int idade = 0;
+        String profissao;
+        
+         // Entrada de nome
+         do{
+         nome = JOptionPane.showInputDialog("Digite seu nome: ");
+         if (nome != null && nome.matches(".*\\d.*")){// Se tiver número
+         JOptionPane.showMessageDialog(null, "o nome n pode conter numeros, tente novamente.");
+         nome = null;// Zera para repetir o loop
+         }
+       }while (nome == null || nome.trim().isEmpty());
+        
+
+
+// Entrada de idade 
+    
+    boolean idadeValida = false;
+    while (!idadeValida) {
+        
+        try {
+    String idadeTexto = JOptionPane.showInputDialog("Digite sua idade");
+    if (idadeTexto == null) continue;//Se cancelar, pede de novo
+    idade =  Integer.parseInt(idadeTexto);
+    if (idade > 0) {
+        idadeValida = true;
+     } else {
+    
+    JOptionPane.showMessageDialog(null,"A idade deve ser maior que 0");
+        }
+    
+     }catch (NumberFormatException e){
+     
+     JOptionPane.showMessageDialog(null,"Por favo digite um numero valido para imagem");
+     }
+}
+    
+    // Entrada de profissão
+    
+    do{
+    profissao = JOptionPane.showInputDialog("Digite sua profissao: ");
+    if (profissao != null && profissao.matches(".*\\d.*")){// Se tiver número
+       JOptionPane.showMessageDialog(null, "A profissao nao pode conter numeros, tente novamente");
+        profissao = null; // Zera para repetir o loop
+    } 
+} while (profissao == null || profissao.trim().isEmpty());
+    
+     // Exibir as informações cadastradas
+    
+     String mensagem = "informacoes Cadastradas:\n" +
+             "nome: " + nome + "\n" +
+             "Idade: " + idade + " anos\n"+
+             "profissao: " + profissao;
+     JOptionPane.showMessageDialog(null, mensagem);
+     
+     
+     
+    
+    }
+    
+}
