@@ -1,0 +1,112 @@
+import javax.swing.JOptionPane; // Para caixas de diálogo
+import java.util.Random; // Para gerar números aleatórios
+
+public class Main {
+
+    // Naipes do baralho
+    static String[] naipes = {"Copas", "Ouros", "Espadas", "Paus"};
+    static int[] cartasDisponiveis = new int[13]; // 0 a 12, representando 2 a 10, J, Q, K, A (em ordem)
+
+    // Função para gerar valor de carta (incluindo Ás) e atribuir naipe
+    public static int cartaValor(Random random) {
+        int valor = random.nextInt(13); // 0 a 12 (representando 2 a 10, J, Q, K, A)
+
+        // Verificar se a carta já foi retirada o suficiente
+        while (cartasDisponiveis[valor] >= 4) {
+            valor = random.nextInt(13); // Se já retirou todas as cartas desse tipo, sorteia outro valor
+        }
+
+        cartasDisponiveis[valor]++; // Atualizar a quantidade de cartas retiradas para esse valor
+        return valor + 2; // Retornar o valor real da carta (2 a 14, sendo 14 o Ás)
+    }
+
+    // Função para sortear o naipe da carta
+    public static String sorteiaNaipe(Random random) {
+        return naipes[random.nextInt(naipes.length)];
+    }
+
+    public static void main(String[] args) {
+        // Exibir mensagem de boas-vindas
+        JOptionPane.showMessageDialog(null, "Bem-vindo ao jogo 21!");
+
+        // Criar um gerador de números aleatórios
+        Random random = new Random();
+
+        // Gerar cartas para o jogador
+        int carta1 = cartaValor(random);
+        String naipe1 = sorteiaNaipe(random);
+
+        int carta2 = cartaValor(random);
+        String naipe2 = sorteiaNaipe(random);
+
+        // Gerar cartas para o dealer
+        int cartaDealer1 = cartaValor(random);
+        String naipeDealer1 = sorteiaNaipe(random);
+
+        int cartaDealer2 = cartaValor(random);
+        String naipeDealer2 = sorteiaNaipe(random);
+
+        // Calcular a soma das cartas
+        int soma = carta1 + carta2;
+        int somaDealer = cartaDealer1 + cartaDealer2;
+
+        // Mostrar as cartas
+        JOptionPane.showMessageDialog(null, "Você recebeu as cartas: " + carta1 + " de " + naipe1 + " e " + carta2 + " de " + naipe2 +
+                "\nSoma das suas cartas: " + soma + "\nO dealer tem uma carta virada para baixo");
+
+        // Perguntar se o jogador deseja continuar
+        String escolha = JOptionPane.showInputDialog("Deseja pedir mais uma carta? (sim/nao)");
+
+        while (escolha.equalsIgnoreCase("sim") && soma <= 21) {
+            // Gerar nova carta aleatória
+            int novaCarta = cartaValor(random);
+            String naipeNovaCarta = sorteiaNaipe(random);
+
+            soma += novaCarta;
+
+            // Exibir a nova carta e a nova soma
+            JOptionPane.showMessageDialog(null, "Você recebeu a carta: " + novaCarta + " de " + naipeNovaCarta +
+                    "\nSoma das suas cartas: " + soma);
+
+            if (soma > 21) {
+                JOptionPane.showMessageDialog(null, "Você ultrapassou 21! Você perdeu.");
+                break; // Exibir a nova carta e a nova soma
+            }
+
+            // Perguntar se o jogador deseja continuar
+            escolha = JOptionPane.showInputDialog("Deseja pedir mais uma carta? (sim/nao)");
+        }
+
+        if (soma <= 21 && !escolha.equalsIgnoreCase("sim")) {
+            JOptionPane.showMessageDialog(null, "Você escolheu parar. A soma final das suas cartas é: " + soma);
+        }
+
+        // Mostrar cartas do dealer (dealer segue regras do jogo)
+        JOptionPane.showMessageDialog(null, "Agora é a vez do dealer...\n" +
+                "O dealer tem as cartas: " + cartaDealer1 + " de " + naipeDealer1 + " e " + cartaDealer2 + " de " + naipeDealer2 +
+                "\nSoma das cartas do dealer: " + somaDealer);
+
+        // O dealer vai continuar comprando cartas enquanto a soma for menor que 17
+        while (somaDealer < 17) {
+            int novaCartaDealer = cartaValor(random);
+            String naipeNovaCartaDealer = sorteiaNaipe(random);
+            somaDealer += novaCartaDealer;
+
+            JOptionPane.showMessageDialog(null, "O dealer comprou a carta: " + novaCartaDealer + " de " + naipeNovaCartaDealer +
+                    "\nSoma das cartas do dealer: " + somaDealer);
+        }
+
+        // Verificar quem ganhou
+        if (soma > 21) {
+            JOptionPane.showMessageDialog(null, "Você perdeu, pois ultrapassou 21.");
+        } else if (somaDealer > 21) {
+            JOptionPane.showMessageDialog(null, "O dealer ultrapassou 21! Você venceu.");
+        } else if (soma > somaDealer) {
+            JOptionPane.showMessageDialog(null, "Você ganhou! Sua soma é maior que a do dealer.");
+        } else if (soma < somaDealer) {
+            JOptionPane.showMessageDialog(null, "O dealer ganhou, sua soma é menor que a do dealer.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Empate! Você e o dealer têm o mesmo valor.");
+        }
+    }
+}
